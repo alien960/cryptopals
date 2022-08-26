@@ -7,7 +7,7 @@ int main(){
 	char output[256];	//For storing output
 
 	//Base64 alphabet for reference by algorithm
-	char b64[65] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/','='};
+	const char b64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	
 	int index = 0;          //Index for tracking input quantity and array location
 	int outIndex = 0;       //Index for tracking output quantity and array location
@@ -47,7 +47,7 @@ int main(){
 	}
 	else if ((index * 8) % 6 == 4){         //'==' if 4 0's padded
 		output[outIndex] = '=';
-		output[outIndex] = '=';
+		output[outIndex + 1] = '=';
 		outIndex = outIndex + 2;
 	}
 
