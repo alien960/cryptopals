@@ -14,7 +14,7 @@ int main(){
 	
 	printf("Input:  ");
 
-	while((input[index] = getchar()) != EOF && input[index] != '\n'){                //Checks if input is finished and prevents '\n' from being entered in input[]
+	while(((input[index] = getchar()) != EOF) && (input[index] != '\n')){                //Checks if input is finished and prevents '\n' from being entered in input[]
 		input[index] = input[index] | ' ';                                       //Mask by ORing with [space] =  00100000 to convert uppercase to lowercase
 		if (input[index] >= '0' && input[index] <= '9') input[index] = input[index] - '0';       //Converts '0'-'9' from UTF-8 to digit
 		else if (input[index] >= 'a' && input[index] <= 'f') input[index] = input[index] - 'W';  //Converts 'a'-'f' from UTF-8 to digit
