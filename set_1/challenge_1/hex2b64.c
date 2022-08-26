@@ -14,7 +14,8 @@ int main(){
 	
 	printf("Input:  ");
 
-	while(((input[index] = getchar()) != EOF) && (input[index] != '\n')){                //Checks if input is finished and prevents '\n' from being entered in input[]
+	/*
+	while(((input[index] = getchar()) != EOF) && (input[index] != '\n')){            //Checks if input is finished and prevents '\n' from being entered in input[]
 		input[index] = input[index] | ' ';                                       //Mask by ORing with [space] =  00100000 to convert uppercase to lowercase
 		if (input[index] >= '0' && input[index] <= '9') input[index] = input[index] - '0';       //Converts '0'-'9' from UTF-8 to digit
 		else if (input[index] >= 'a' && input[index] <= 'f') input[index] = input[index] - 'W';  //Converts 'a'-'f' from UTF-8 to digit
@@ -24,9 +25,25 @@ int main(){
 		}	
 		index++;
 	}
+	*/
+
+	for(index; (input[index] = getchar()) != EOF; index++){
+		printf("Input before mask: %c\n", input[index]);
+		input[index] = input[index] | ' ';
+		if(input[index] >= '0' && input[index] <= '9') input[index] = input[index] - '0';
+		else if(input[index] >= 'a' && input[index] <= 'f') input[index] = input[index] - 'W';
+		else if(input[index] == '*'){
+			input[index] = 0;
+			break;
+		}
+		else{
+			printf("Invalid input! 0-9, a-f, A-F only!\nInput was: %c\n", input[index]);
+			return(1);
+		}
+	}
 
 	//Hex -> b64 algorithm
-	input[index] = 0;		//Add padding for last interpreted character
+	//input[index] = 0;		//Add padding for last interpreted character
 	for(int i = 0; i < index; i++){                                              //The pattern of this encoding is composed of two blocks, dubbed even/odd
 		if(outIndex % 2 == 0 || outIndex == 0){                              //Determine if term is even in sequence
 		       	output[outIndex] = b64[(input[i] << 4 | input[i+1]) >> 2];   //Determine b64 char by shifting first term L4 bits and OR with next term  
