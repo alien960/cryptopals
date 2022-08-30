@@ -18,4 +18,4 @@ if your function works properly, then when you feed it the string:
 
 https://www.cryptopals.com/sets/1/challenges/2
 
-
+COMPLETED
